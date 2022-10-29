@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Dex Search </title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<style>
+	.search {
+		margin: 0 auto;
+	}
+
+		.search h4 {
+			margin: 30px 0px 20px 0px;
+			font-size: 30px;
+		}
+
+		.search input[id="inputText"] {
+			width: 60%;
+			border-radius: 30px;
+			outline: double;
+			border: solid 3px blue;
+			padding-left: 10px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+
+		.search a {
+			margin-top: 10px;
+			margin-left: 5px;
+			margin-right: 5px;
+			font-size: 20px;
+			color: black;
+			background-color: aliceblue;
+			width: 100px;
+		}
+
+			.search a[id="searchText"] {
+				background-color: darkslateblue;
+				color: whitesmoke;
+			}
+
+			.search a:hover {
+				background-color: aquamarine;
+			}
+
+	.playText input[id="keywords"] {
+		margin-top: 100px;
+		margin-left: 20px;
+		padding-left: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border: groove;
+	}
+
+	.playText p {
+		margin-top: 20px;
+	}
+
+	.playText button[id="addText"] {
+		background-color: green;
+		color: whitesmoke;
+		margin-left: 20px;
+		border-radius: 30px;
+	}
+
+	.playText button:hover {
+		background-color: orangered;
+	}
+
+	.playText p {
+		margin-left: 20px;
+	}
+</style>
+<body>
+	<div id="playground" class="playText">
+		<!-- Search Bar -->
+		<div class="search" align="center">
+			<h4><em>Search</em> Engine</h4>
+			<input type="search" id="inputText" placeholder="Search for something on Google... " class="form-control"><br>
+			<a href="#" class="btn" id="searchText" onclick="searchFunc()">Search</a>
+		</div>
+
+		<input id="keywords" type="search" size="50" placeholder="Highlight/Add text">
+		<button type="button" class="btn btn-succes" id="addText" onclick="addFunc()">Add Text</button>
+
+		<p>
+			This is a text.This is a text.This is a text.This is a text.This is a text.This is a text.This is a text.This is a text.This is a text.
+			This is a text.This is a text.This is a text.
+			<div class="addTxt" id="addedText" align="center"></div>
+		</p>
+
+
+
+	</div>
+
+
+
+</body>
+<script src="textHighlightor.js"></script>
+<script>
+
+	window.addEventListener("DOMContentLoaded", function (e) {
+		var myHilitor2 = new Hilitor("playground");
+		myHilitor2.setMatchType("left");
+		document.getElementById("keywords").addEventListener("keyup", function (e) {
+			myHilitor2.apply(this.value);
+		}, false);
+	}, false);
+
+</script>
+
+<script language="javascript" type="text/javascript">
+	function addFunc() {
+		let input = document.getElementById("keywords").value;
+		document.getElementById("addedText").innerHTML += input + " ";
+
+	}
+
+	function searchFunc() {
+		let input = document.getElementById("inputText").value;
+		const startUrl = "https://www.google.com/search?q=";
+		var finalUrl = startUrl + input;
+		window.open(finalUrl, '_blank').focus();
+	}
+</script>
+</html>
